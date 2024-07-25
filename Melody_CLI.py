@@ -209,10 +209,9 @@ class Player():
     def removetempfile(self, audioFile):
         # Try to delete the file.
         try:
-            if pygame.mixer.music.get_busy():
-                pygame.mixer.music.unload()
-                os.remove(audioFile)
-                print("Temporary file is deleted:", audioFile)
+            pygame.mixer.music.unload()
+            os.remove(audioFile)
+            print("Temporary file is deleted:", audioFile)
         except OSError as e:
             # If it fails, inform the user.
             print("Error: %s - %s." % (e.filename, e.strerror))
