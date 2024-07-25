@@ -28,11 +28,3 @@ if __name__ == "__main__":
     player.addvolumeSong(0.9)
     time.sleep(2)
     #player.stopSong()
-
-
-#time.sleep(3)
-#player.pauseSong()
-#time.sleep(1)
-#player.resumeSong()
-#time.sleep(3)
-#player.stopSong()
