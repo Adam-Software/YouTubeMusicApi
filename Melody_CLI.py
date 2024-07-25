@@ -153,7 +153,7 @@ class Player():
             pygame.mixer.music.play()
             while pygame.mixer.music.get_busy() or self.is_paused:
                 pygame.time.Clock().tick(10)
-            self.stopSong()
+            self.stopSong(mp3_file)
 
         self.currently_playing = mp3_file
         self.playback_thread = threading.Thread(target=_play)
@@ -206,20 +206,18 @@ class Player():
             self.is_paused = False
             print("Music resumed")
 
-    def removetempfile(audioFile):
-        # Get input.
-        myfile = audioFile
+    def removetempfile(self, audioFile):
         # Try to delete the file.
         try:
             if pygame.mixer.music.get_busy():
                 pygame.mixer.music.unload()
-                os.remove(myfile)
-                print("Temporary file is deleted:", myfile)
+                os.remove(audioFile)
+                print("Temporary file is deleted:", audioFile)
         except OSError as e:
             # If it fails, inform the user.
             print("Error: %s - %s." % (e.filename, e.strerror))
 
-    def stopSong(self):
+    def stopSong(self, mp3_file):
         """
         Stops the currently playing song and resets the player's state.
 
@@ -239,6 +237,7 @@ class Player():
         """
         if self.currently_playing:
             pygame.mixer.music.stop()
+            self.removetempfile(mp3_file)
             self.currently_playing = None
             self.is_paused = False
 
