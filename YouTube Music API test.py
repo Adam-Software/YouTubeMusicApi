@@ -27,4 +27,4 @@ if __name__ == "__main__":
     "Add volume from 0.0 to 1.0"
     player.addvolumeSong(0.9)
     time.sleep(2)
-    #player.stopSong()
+    #player.stopSong(audioFile)
